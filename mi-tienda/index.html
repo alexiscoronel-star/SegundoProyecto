@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Store | Hardware Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --fondo: #05070a;
+            --tarjeta: #11141b;
+            --neon-azul: #00d4ff;
+            --neon-verde: #00ff87;
+            --neon-rojo: #ff0844;
+            --texto: #e0e0e0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+        body {
+            background-color: var(--fondo);
+            color: var(--texto);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- NAVEGACIÓN Y CARRITO --- */
+        nav {
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(17, 20, 27, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-weight: 800; letter-spacing: 2px; color: var(--neon-azul); }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        #cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--neon-rojo);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        header { padding: 60px 20px; text-align: center; }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(90deg, var(--neon-azul), #9d50bb);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        /* --- GRID Y TARJETAS --- */
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            width: 90%;
+            margin-bottom: 80px;
+        }
+
+        .tarjeta {
+            background: var(--tarjeta);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efectos Neón Individuales */
+        .t-laptop:hover { border-color: var(--neon-azul); box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+        .t-kit:hover { border-color: var(--neon-verde); box-shadow: 0 0 20px rgba(0, 255, 135, 0.3); }
+        .t-audio:hover { border-color: var(--neon-rojo); box-shadow: 0 0 20px rgba(255, 8, 68, 0.3); }
+
+        .tarjeta:hover { transform: translateY(-15px); }
+
+        .foto-producto {
+            width: 100%;
+            height: 220px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .precio { font-size: 1.8rem; font-weight: bold; color: #fff; margin: 15px 0; display: block; }
+
+        .btn {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background: var(--neon-azul);
+            letter-spacing: 1px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            width: 100%;
+            background: #0a0c10;
+            padding: 50px 20px;
+            margin-top: auto;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .social-icons { margin-bottom: 20px; }
+        .social-icons i {
+            font-size: 1.5rem;
+            margin: 0 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            color: #8892b0;
+        }
+        .social-icons i:hover { color: var(--neon-azul); }
+
+        .metodos-pago {
+            font-size: 1.2rem;
+            color: #444;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">GAMING ST0RE</div>
+        <div class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cart-count">0</span>
+        </div>
+    </nav>
+
+    <header>
+        <h1>ARMAMENTO PRO</h1>
+        <p style="color: #8892b0; margin-top: 10px;">Equípate con lo mejor para el campo de batalla</p>
+    </header>
+
+    <div class="grid-productos">
+        
+        <div class="tarjeta t-laptop">
+            <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?auto=format&fit=crop&w=500&q=80" alt="Laptop" class="foto-producto">
+            <span style="color: var(--neon-azul); font-weight: bold; font-size: 0.7rem;">HARDWARE</span>
+            <h3>Laptop Gamer RTX</h3>
+            <span class="precio">S/ 4,299</span>
+            <button class="btn" onclick="agregarAlCarrito()">Comprar</button>
+        </div>
+
+        <div class="tarjeta t-kit">
+            <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=500&q=80" alt="Kit PC" class="foto-producto">
+            <span style="color: var(--neon-verde); font-weight: bold; font-size: 0.7rem;">PERIFÉRICOS</span>
+            <h3>Combo Master RGB</h3>
+            <span class="precio">S/ 350</span>
+            <button class="btn" onclick="agregarAlCarrito()">Comprar</button>
+        </div>
+
+        <div class="tarjeta t-audio">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80" alt="Audífonos" class="foto-producto">
+            <span style="color: var(--neon-rojo); font-weight: bold; font-size: 0.7rem;">AUDIO 7.1</span>
+            <h3>Headset Pro Bass</h3>
+            <span class="precio">S/ 199</span>
+            <button class="btn" onclick="agregarAlCarrito()">Comprar</button>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="social-icons">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-discord"></i>
+            <i class="fab fa-twitch"></i>
+        </div>
+        <p>&copy; 2026 Gaming Store - Trujillo, Perú</p>
+        <div class="metodos-pago">
+            <i class="fab fa-cc-visa"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fab fa-cc-apple-pay"></i>
+        </div>
+    </footer>
+
+    <script>
+        let count = 0;
+        function agregarAlCarrito() {
+            count++;
+            document.getElementById('cart-count').innerText = count;
+            alert('¡Producto añadido al carrito! 🛒');
+        }
+    </script>
+
+</body>
+</html>
